@@ -5,17 +5,20 @@
     const $uploadBtn = $('#upload-btn');
     const $cropBtn =  $('#crop-btn');
 
+    //default setting
     let imageHeight = 520;
     let imageWidth = 240;
+    let aspectRatio = 5 / 7;
+    let fillColor = "#fff";
 
     cropperInit();
 
     function cropperInit() {
         $image.cropper({
-        aspectRatio: 5 / 7,
+        aspectRatio: aspectRatio,
         crop: function(event) {
                 canvas = $image.cropper("getCroppedCanvas", {
-                    fillColor: "#fff",
+                    fillColor: fillColor,
                     maxWidth:700
                 });        
             }
@@ -46,12 +49,16 @@
             "isCropper" : true,
         }
         msg = {...msg, data};
-        console.log("message : " , msg);
+        // console.log("message : " , msg);
         window.parent.postMessage(msg, "*");
     }
 
     function updateCropperImage(url) {
         $image.attr("src" , url);
+        refreshCropper();
+    }
+
+    function refreshCropper() {
         cropperDestory();
         cropperInit();
     }
@@ -61,6 +68,17 @@
         if(data.toUpdateImageURL) {
             let url = data.updateImageURL;
             updateCropperImage(url);
+        }  else if(data.initSetting) {
+            let {aspectRatio:asptRatio , fillColor: backgroundColor,
+                imageHeight:imgH, imageWidth:imgW, noAspectRatio} = data.setting;
+            if(asptRatio) aspectRatio = asptRatio;
+            if(backgroundColor) fillColor = backgroundColor;
+            if(noAspectRatio) aspectRatio = NaN;
+            if(imgH) imageHeight = imgH;
+            if(imgW) imageWidth = imgW;
+            refreshCropper();
         }
     }
+
+    sendData({ready: true});
 // });
