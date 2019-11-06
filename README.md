@@ -42,8 +42,8 @@ This will be the default setting of the app
 send the message to HTML if it's embed in wix site.
 ```js
 let msg = {
-    toUpdateImageURL: true,
-    updateImageURL: "<image URL here>"
+    toUpdateImageURL: true, // requre to change the image
+    updateImageURL: "<image URL here>" // require image URL
 }
 window.postmessage(msg);
 ```
@@ -57,15 +57,15 @@ On message event trigger when the app is ready to or when the upload button is c
 on ready below message will be sent to parent component, in our case it's the wix site.
 ```js
     {
-        isCropper: true,
-        ready: true
+        isCropper: true, // default
+        ready: true 
     }
 ```
 
 when the image is uploaded, below message with the cropped image in Array buffer will be sent
 ```js
     {
-        isCropper: true,
+        isCropper: true,// default
         imageData: ["<image buffer>"]
     }
 ```
