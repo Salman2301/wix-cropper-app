@@ -72,3 +72,8 @@ when the image is uploaded, below message with the cropped image in Array buffer
 
 ### Note
 App is still in developing stage 
+
+
+### Credit
+
+https://github.com/fengyuanchen/jquery-cropper
