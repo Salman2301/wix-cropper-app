@@ -52,8 +52,7 @@ window.postmessage(msg);
 
 ## On message
 
-    On message event trigger when the app is ready to or when the upload button is clicked, it will send the cropper image in Array buffer data type
-
+On message event trigger when the app is ready to or when the upload button is clicked, it will send the cropper image in Array buffer data type
 
 on ready below message will be sent to parent component, in our case it's the wix site.
 ```js
