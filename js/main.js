@@ -48,7 +48,7 @@
         let msg = {
             "isCropper" : true,
         }
-        msg = {...msg, data};
+        msg = {...msg, ...data};
         // console.log("message : " , msg);
         window.parent.postMessage(msg, "*");
     }
